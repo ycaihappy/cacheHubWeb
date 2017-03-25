@@ -12,7 +12,7 @@ It is easy to use for both beginners and professionals. I think you're going to 
     * Memcache
     * Therolly,all nosql support, but need development
 * Support Builder
-    * DBBuilder & CacheBuilder
+    * DBBuilder & CacheBuilder is Base
     * Builder extend your application.
 * Gearman queue 
 * Token verfiy
@@ -24,12 +24,25 @@ It is easy to use for both beginners and professionals. I think you're going to 
 
 ### System Requirements
 
-You need **PHP >= 5.3.0**.
+You need **PHP >= 5.3.0  AND Gearman >= 1.0.1**. 
 
 ### Tutorial
 
-1. Start Gearman server
-2. Define Builder byself
+1. Configuration Server  accord by your builder,such as language,directy use sql to build.
+```php
+return array(
+    'builder' => 'DB2HashBuilder',
+    'sql' => 'select code as HASH_KEY,languages_id,name,code,currency_code,is_top,directory from languages where language_status=1 order by sort_order',
+);
+```
+
+2. Start Gearman server and excute the worker
+```shell
+gearmand -d -l /var/log/gearmand.log -p4379
+nohup php cacheHubWeb_build.worker.php &
+```
+
+3. configuration client  accord by your business,such as language,named common.languages.conf
 ```php
 return array(
     'caches' => array(
@@ -45,7 +58,7 @@ return array(
 );
 ```
 
-3. Call sample by php
+4. Example call by php client
 ```php
 include "/data/conf/cacheHubWeb/client/config.php";
 
@@ -58,13 +71,13 @@ $result = $cacheHubWeb->get();
 
 ## Community
 
-### Wechat
+### å…¬ä¼—å·
 
-Follow [µÁÂë¼Ç] to receive news and updates about the framework.
+Follow [ç›—ç è®°] to receive news and updates about the framework.
 
 ## Author
 
-The Framework is created and maintained by [Jackie Lee](http://www.lizhili.com). 
+The Framework is created and maintained by [Jackie Lee] and his followers(http://www.lizhili.com). 
 
 ## License
 
