@@ -77,7 +77,7 @@ Follow [盗码记] to receive news and updates about the framework.
 
 ## Author
 
-The Framework is created and maintained by [Jackie Lee] and his followers(http://www.lizhili.com). 
+The Framework is created and maintained by JK and his followers
 
 ## License
 
